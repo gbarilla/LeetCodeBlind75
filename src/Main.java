@@ -6,10 +6,9 @@ public class Main {
         //MoveZeroes();
         //kidsWithCandies();
         //twoWordPermutation();
+        //reverseVowels();
 
 
-
-        System.out.println(reverseVowels("IceCream"));
         String input ="Mr John    Smith     ";
         int trueLenght = 17;
         System.out.println(replaceWhitespace(input,trueLenght));
@@ -100,6 +99,11 @@ public class Main {
     {
         int[] nums = {0, 1, 0, 3, 12};
         LeetCodeProblems.MoveZeroes(nums);
+    }
+
+    public static void reverseVowels()
+    {
+        System.out.println(LeetCodeProblems.reverseVowels("IceCream"));
     }
 
     public static void kidsWithCandies()
