@@ -3,19 +3,15 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        //MoveZeroes();
-        //kidsWithCandies();
-        //twoWordPermutation();
-        //reverseVowels();
+        // MoveZeroes();
+        // kidsWithCandies();
+        // twoWordPermutation();
+        // reverseVowels();
+        // replaceWhiteSpaces();
 
 
-        String input ="Mr John    Smith     ";
-        int trueLenght = 17;
-        System.out.println(replaceWhitespace(input,trueLenght));
-
-
-        //151. Reverse Words in a String
-        //expected output = blue is sky the
+        // 151. Reverse Words in a String
+        // expected output = blue is sky the
         String phrase ="the sky is blue";
 
         //expected output = world hello
@@ -25,11 +21,11 @@ public class Main {
 
 
 
-        //238. Product of Array Except Self
-        //expected Output: [24,12,8,6]
+        // 238. Product of Array Except Self
+        // expected Output: [24,12,8,6]
         int[] nums = {1,2,3,4};
 
-        //expected Output: [0,0,9,0,0]
+        // expected Output: [0,0,9,0,0]
         int[] nums2 = {-1,1,0,-3,3};
 
         for(int i : productExceptSelf(nums2))
@@ -43,9 +39,9 @@ public class Main {
 
 
 
-        //643. Maximum Average Subarray I
-        //Input: nums = [1,12,-5,-6,50,3], k = 4
-        //Output: 12.75000
+        // 643. Maximum Average Subarray I
+        // Input: nums = [1,12,-5,-6,50,3], k = 4
+        // Output: 12.75000
         int[] example1 = {1,12,-5,-6,50,3};
         int[] exampleTry = {1,2,3,4,5,6};
         int k = 4;
@@ -112,6 +108,13 @@ public class Main {
         int[] candies = {4,2,1,1,2};
         int extraCandies = 1;
         var test = LeetCodeProblems.kidsWithCandies(candies,extraCandies);
+    }
+
+    public static void replaceWhiteSpaces()
+    {
+        String input ="Mr John    Smith     ";
+        int trueLenght = 17;
+        System.out.println(LeetCodeProblems.replaceWhitespace(input,trueLenght));
     }
 
     public static void twoWordPermutation()
@@ -195,34 +198,6 @@ public class Main {
         
     }
 
-    public static String replaceWhitespace(String input,int trueLenght)
-    {
-        String wordWithWhitespace = input;
-        String wordWithoutWhitespaces;
-        StringBuilder builder = new StringBuilder();
-        String replace = "%20";
-        ArrayList<Integer> batchFound = new ArrayList<>();
-
-        for(int wordIndex = 0; wordIndex < trueLenght; wordIndex++)
-        {
-            char currentletter = input.charAt(wordIndex);
-            if(currentletter==' ') {
-                batchFound.add(wordIndex);
-                System.out.println("whitespace found at index: "+wordIndex);
-                builder.append(replace);
-            }
-            else {
-                builder.append(currentletter);
-                System.out.println("Current batch to clear");
-                for(int index : batchFound)
-                {
-                    System.out.println("Clearing this batch: index at :"+index);
-                }
-                batchFound.clear();
-            }
-        }
-        return builder.toString();
-    }
 
 
     public static String reverseWords(String s) {

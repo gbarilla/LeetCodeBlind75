@@ -158,4 +158,33 @@ public class LeetCodeProblems {
             return builder.toString();
         }
     }
+
+    public static String replaceWhitespace(String input,int trueLenght)
+    {
+        String wordWithWhitespace = input;
+        String wordWithoutWhitespaces;
+        StringBuilder builder = new StringBuilder();
+        String replace = "%20";
+        ArrayList<Integer> batchFound = new ArrayList<>();
+
+        for(int wordIndex = 0; wordIndex < trueLenght; wordIndex++)
+        {
+            char currentletter = input.charAt(wordIndex);
+            if(currentletter==' ') {
+                batchFound.add(wordIndex);
+                System.out.println("whitespace found at index: "+wordIndex);
+                builder.append(replace);
+            }
+            else {
+                builder.append(currentletter);
+                System.out.println("Current batch to clear");
+                for(int index : batchFound)
+                {
+                    System.out.println("Clearing this batch: index at :"+index);
+                }
+                batchFound.clear();
+            }
+        }
+        return builder.toString();
+    }
 }
