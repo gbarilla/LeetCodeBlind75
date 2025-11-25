@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class Main {
@@ -8,35 +7,8 @@ public class Main {
         // twoWordPermutation();
         // reverseVowels();
         // replaceWhiteSpaces();
-
-
-        // 151. Reverse Words in a String
-        // expected output = blue is sky the
-        String phrase ="the sky is blue";
-
-        //expected output = world hello
-        String phrase2 = "  hello world  ";
-
-        System.out.println(reverseWords(phrase2));
-
-
-
-        // 238. Product of Array Except Self
-        // expected Output: [24,12,8,6]
-        int[] nums = {1,2,3,4};
-
-        // expected Output: [0,0,9,0,0]
-        int[] nums2 = {-1,1,0,-3,3};
-
-        for(int i : productExceptSelf(nums2))
-        {
-            System.out.println(i);
-        }
-
-
-
-
-
+        reverseWords();
+        productExceptSelf();
 
 
         // 643. Maximum Average Subarray I
@@ -89,6 +61,31 @@ public class Main {
             System.out.println(s);
         }
 
+    }
+
+    private static void productExceptSelf() {
+        // 238. Product of Array Except Self
+        // expected Output: [24,12,8,6]
+        int[] nums = {1,2,3,4};
+
+        // expected Output: [0,0,9,0,0]
+        int[] nums2 = {-1,1,0,-3,3};
+
+        for(int i : LeetCodeProblems.productExceptSelf(nums2))
+        {
+            System.out.println(i);
+        }
+    }
+
+    private static void reverseWords() {
+        // 151. Reverse Words in a String
+        // expected output = blue is sky the
+        String phrase ="the sky is blue";
+
+        //expected output = world hello
+        String phrase2 = "  hello world  ";
+
+        System.out.println(LeetCodeProblems.reverseWords(phrase2));
     }
 
     public static void MoveZeroes()
@@ -196,68 +193,6 @@ public class Main {
 
         return "";
         
-    }
-
-
-
-    public static String reverseWords(String s) {
-        String[] wordArray = s.split(" ");
-        StringBuilder builder = new StringBuilder();
-        ArrayList<String> wordArrayWithoutSpaces = new ArrayList<>();
-        String space = " ";
-
-        for(int currentIndex = 0; currentIndex< wordArray.length ; currentIndex++)
-        {
-            if(!wordArray[currentIndex].isEmpty())
-            {
-                wordArrayWithoutSpaces.add(wordArray[currentIndex]);
-            }
-        }
-
-        for(int reverseIndex = wordArrayWithoutSpaces.size()-1; reverseIndex >= 0; reverseIndex--)
-        {
-            builder.append(wordArrayWithoutSpaces.get(reverseIndex));
-            if(reverseIndex != 0)
-            {
-                builder.append(space);
-            }
-        }
-
-        return builder.toString();
-
-    }
-
-    public static int[] productExceptSelf(int[] nums) {
-        int[] result = new int[nums.length];
-        int[] leftSide = new int[nums.length];
-        int[] rightSide = new int[nums.length];
-
-        int rollingvalue = 1;
-        //get all to the left of this index
-        for(int currentIndex =0; currentIndex < nums.length; currentIndex ++)
-        {
-            leftSide[currentIndex] = rollingvalue;
-            rollingvalue = rollingvalue*nums[currentIndex];
-        }
-
-        int currentIndex = 0;
-        int rollingReverseValue = 1;
-        for(int reverseIndex = nums.length-1 ; reverseIndex >= 0; reverseIndex--)
-        {
-            rightSide[reverseIndex] = rollingReverseValue;
-            rollingReverseValue = rollingReverseValue*nums[reverseIndex];
-        }
-
-        for(int i =0; i < nums.length;i++)
-        {
-            result[i] = leftSide[i]*rightSide[i];
-        }
-
-
-
-        return result;
-
-
     }
 
     public static double findMaxAverage(int[] nums, int k) {

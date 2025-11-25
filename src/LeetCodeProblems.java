@@ -187,4 +187,64 @@ public class LeetCodeProblems {
         }
         return builder.toString();
     }
+
+    public static int[] productExceptSelf(int[] nums) {
+        int[] result = new int[nums.length];
+        int[] leftSide = new int[nums.length];
+        int[] rightSide = new int[nums.length];
+
+        int rollingvalue = 1;
+        //get all to the left of this index
+        for(int currentIndex =0; currentIndex < nums.length; currentIndex ++)
+        {
+            leftSide[currentIndex] = rollingvalue;
+            rollingvalue = rollingvalue*nums[currentIndex];
+        }
+
+        int currentIndex = 0;
+        int rollingReverseValue = 1;
+        for(int reverseIndex = nums.length-1 ; reverseIndex >= 0; reverseIndex--)
+        {
+            rightSide[reverseIndex] = rollingReverseValue;
+            rollingReverseValue = rollingReverseValue*nums[reverseIndex];
+        }
+
+        for(int i =0; i < nums.length;i++)
+        {
+            result[i] = leftSide[i]*rightSide[i];
+        }
+
+
+
+        return result;
+
+
+    }
+
+    public static String reverseWords(String s) {
+        String[] wordArray = s.split(" ");
+        StringBuilder builder = new StringBuilder();
+        ArrayList<String> wordArrayWithoutSpaces = new ArrayList<>();
+        String space = " ";
+
+        for(int currentIndex = 0; currentIndex< wordArray.length ; currentIndex++)
+        {
+            if(!wordArray[currentIndex].isEmpty())
+            {
+                wordArrayWithoutSpaces.add(wordArray[currentIndex]);
+            }
+        }
+
+        for(int reverseIndex = wordArrayWithoutSpaces.size()-1; reverseIndex >= 0; reverseIndex--)
+        {
+            builder.append(wordArrayWithoutSpaces.get(reverseIndex));
+            if(reverseIndex != 0)
+            {
+                builder.append(space);
+            }
+        }
+
+        return builder.toString();
+
+    }
 }
