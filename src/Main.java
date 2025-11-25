@@ -5,12 +5,10 @@ public class Main {
     public static void main(String[] args) {
         //MoveZeroes();
         //kidsWithCandies();
+        //twoWordPermutation();
 
 
-        String word1 = "AA";
-        String word2 = "ABAB";
 
-        System.out.println(determineIfTwoWordsArePermutations(word1,word2));
         System.out.println(reverseVowels("IceCream"));
         String input ="Mr John    Smith     ";
         int trueLenght = 17;
@@ -112,6 +110,14 @@ public class Main {
         var test = LeetCodeProblems.kidsWithCandies(candies,extraCandies);
     }
 
+    public static void twoWordPermutation()
+    {
+        String word1 = "AA";
+        String word2 = "ABAB";
+
+        System.out.println(LeetCodeProblems.determineIfTwoWordsArePermutations(word1,word2));
+    }
+
 
 
     public boolean isSubsequence(String s, String t) {
@@ -185,63 +191,7 @@ public class Main {
         
     }
 
-    public static boolean determineIfTwoWordsArePermutations(String word1,String word2)
-    {
-        boolean result = false;
-        HashMap<Character, Integer> dictionary = new HashMap<>();
-        int frequency = 1;
-        int word1Lenght = word1.length();
-        int word2Lenght = word2.length();
-        if(word1Lenght != word2Lenght || word1.isEmpty()|| word2.isEmpty())
-        {
-            return result;
-        }
-        else {
-            for(int indexthoughtWord1 = 0; indexthoughtWord1 < word1Lenght;indexthoughtWord1++)
-            {
-                if(!dictionary.containsKey(word1.charAt(indexthoughtWord1)))
-                {
-                    dictionary.put(word1.charAt(indexthoughtWord1),frequency);
-                }
-                else {
-                    Integer value = dictionary.get(word1.charAt(indexthoughtWord1));
-                    value++;
-                    dictionary.put(word1.charAt(indexthoughtWord1),value);
-                }
-            }
-        }
 
-        result=word2CompareAgainstDictionary(dictionary, word2);
-        return result;
-    }
-
-    public static boolean word2CompareAgainstDictionary(HashMap<Character, Integer> dictionary,String word2)
-    {
-        for(int indexThoughWord2 = 0;indexThoughWord2 < word2.length();indexThoughWord2++)
-        {
-            if(dictionary.containsKey(word2.charAt(indexThoughWord2)))
-            {
-                Integer currentCountofCharacter = dictionary.get(word2.charAt(indexThoughWord2));
-                currentCountofCharacter--;
-                dictionary.put(word2.charAt(indexThoughWord2),currentCountofCharacter);
-            }
-            else {
-                return false;
-            }
-        }
-
-        boolean result = true;
-
-        var allkeys = dictionary.keySet();
-        for(Character key : allkeys)
-        {
-            if(dictionary.get(key)!=0)
-            {
-                result = false;
-            }
-        }
-        return result;
-    }
 
 
 
