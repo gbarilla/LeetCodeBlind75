@@ -7,29 +7,14 @@ public class Main {
         // twoWordPermutation();
         // reverseVowels();
         // replaceWhiteSpaces();
-        reverseWords();
-        productExceptSelf();
+        //reverseWords();
+        //productExceptSelf();
+        findMaxAverage();
+        gcdOfStrings();
+        get_robots();
+    }
 
-
-        // 643. Maximum Average Subarray I
-        // Input: nums = [1,12,-5,-6,50,3], k = 4
-        // Output: 12.75000
-        int[] example1 = {1,12,-5,-6,50,3};
-        int[] exampleTry = {1,2,3,4,5,6};
-        int k = 4;
-        System.out.println(findMaxAverage(exampleTry,k));
-
-
-
-
-
-        String str1 =  "ABC";
-        String str2 =  "ABCABC";
-
-        var test2 = gcdOfStrings(str1,str2);
-        System.out.println(test2);
-
-
+    private static void get_robots() {
         String required_parts_1 = "sensors,case,speaker,wheels";
         String required_parts_2 = "sensors,case,speaker,wheels,claw";
         String required_parts_3 = "sensors,case,screws";
@@ -55,12 +40,29 @@ public class Main {
                 "Rust_legs",
                 "Optimus_sensors"};
 
-        ArrayList<String> result =  get_robots(all_parts,required_parts_1);
+        ArrayList<String> result =  LeetCodeProblems.get_robots(all_parts,required_parts_1);
         for(String s : result)
         {
             System.out.println(s);
         }
+    }
 
+    private static void gcdOfStrings() {
+        String str1 =  "ABC";
+        String str2 =  "ABCABC";
+
+        var test2 = LeetCodeProblems.gcdOfStrings(str1,str2);
+        System.out.println(test2);
+    }
+
+    private static void findMaxAverage() {
+        // 643. Maximum Average Subarray I
+        // Input: nums = [1,12,-5,-6,50,3], k = 4
+        // Output: 12.75000
+        int[] example1 = {1,12,-5,-6,50,3};
+        int[] exampleTry = {1,2,3,4,5,6};
+        int k = 4;
+        System.out.println(LeetCodeProblems.findMaxAverage(exampleTry,k));
     }
 
     private static void productExceptSelf() {
@@ -155,133 +157,7 @@ public class Main {
 
         return stringBuilder.toString();
     }
-
-
-    public static String gcdOfStrings(String str1, String str2) {
-        ArrayList<Character> result = new ArrayList<>();
-
-        int currentIndexforNextWord = 0;
-
-        for(int index = 0; index < str1.length()&&index < str2.length();index++)
-        {
-            Character currentStr1Value=' ';
-            Character currentStr2Value=' ';
-
-
-            if(index < str1.length())
-            {
-                currentStr1Value = str1.charAt(index);
-            }
-            if(index < str2.length())
-            {
-                currentStr2Value = str2.charAt(index);
-            }
-
-            if(currentStr1Value == currentStr2Value)
-            {
-                result.add(currentStr1Value);
-            }
-
-
-            if(index > str1.length())
-            {
-
-            }
-
-
-        }
-
-        return "";
-        
-    }
-
-    public static double findMaxAverage(int[] nums, int k) {
-
-
-        int windowSize = k;
-        //int startIndexForWindow = 0;
-        //int endIndexForWindow = k;
-
-        //1+2+3+4
-
-        //1+2+3+4+5-1
-
-        //1+2+3+4+5+6-1-2
-
-        ArrayList<Integer> store = new ArrayList<>();
-
-        int sum = 0;
-        for(int index = 0; index<nums.length+1;index++)
-        {
-            int end = k;
-            if(index<end)
-            {
-                sum = sum+nums[index];
-            }
-
-
-        }
-
-        return 1.2;
-
-    }
-
-    public static ArrayList<String> get_robots(String[] all_parts, String required_parts)
-    {
-        HashMap<String,Set<String>> robotParts = new HashMap<String,Set<String>>();
-        String[] allRequiredParts = required_parts.split(",");
-        for(String currentAllPartString : all_parts)
-        {
-            //TODO:more check
-            String[] split = currentAllPartString.split("_");
-            //[Rosie][Claw];
-            if(!robotParts.containsKey(split[0]))
-            {
-                Set<String> parts = new HashSet<>();
-                parts.add(split[1]);
-                robotParts.put(split[0],parts);
-            }
-            else
-            {
-                Set<String> currentListOfParts = robotParts.get(split[0]);
-                currentListOfParts.add(split[1]);
-                robotParts.put(split[0],currentListOfParts);
-            }
-
-
-            //TODO: after storing check from iterating though the required_parts_1 to check what is returned incrementally
-        }
-
-        Set<String> allRobotNames = robotParts.keySet();
-        ArrayList<String> result = new ArrayList<>();
-
-        for(String robotName : allRobotNames)
-        {
-            Set<String> robotPart = robotParts.get(robotName);
-            Boolean isCompatible = true;
-            for(int index = 0; index<allRequiredParts.length;index++)
-            {
-                String requiredPart = allRequiredParts[index];
-                if(!robotPart.contains(requiredPart))
-                {
-                    isCompatible=false;
-                }
-            }
-            if(isCompatible)
-            {
-                result.add(robotName);
-            }
-        }
-        return result;
-
-
-
-    }
-
-    //Iterate though all parts once
-    //key = name
-    //value = arraylist string
-    }
+}
 
 
 
