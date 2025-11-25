@@ -6,12 +6,12 @@ public class Main {
         // kidsWithCandies();
         // twoWordPermutation();
         // reverseVowels();
-        // replaceWhiteSpaces();
+         replaceWhiteSpaces();
         //reverseWords();
         //productExceptSelf();
-        findMaxAverage();
-        gcdOfStrings();
-        get_robots();
+        //findMaxAverage();
+        //gcdOfStrings();
+        //get_robots();
     }
 
     private static void get_robots() {
@@ -98,33 +98,35 @@ public class Main {
 
     public static void reverseVowels()
     {
-        System.out.println(LeetCodeProblems.reverseVowels("IceCream"));
+        System.out.println(LeetCodeProblems.reverseVowels("FarekIy"));
     }
 
     public static void kidsWithCandies()
     {
 
-        int[] candies = {4,2,1,1,2};
+        int[] candies = {4,2,3,5,2};
         int extraCandies = 1;
         var test = LeetCodeProblems.kidsWithCandies(candies,extraCandies);
+        for(var i : test)
+        {
+            System.out.println(i);
+        }
     }
 
     public static void replaceWhiteSpaces()
     {
-        String input ="Mr John    Smith     ";
+        String input ="M  r Jo h  n Smith   ";
         int trueLenght = 17;
         System.out.println(LeetCodeProblems.replaceWhitespace(input,trueLenght));
     }
 
     public static void twoWordPermutation()
     {
-        String word1 = "AA";
-        String word2 = "ABAB";
+        String word1 = "ABCA";
+        String word2 = "AABCA";
 
         System.out.println(LeetCodeProblems.determineIfTwoWordsArePermutations(word1,word2));
     }
-
-
 
     public boolean isSubsequence(String s, String t) {
         return true;

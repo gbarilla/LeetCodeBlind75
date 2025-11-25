@@ -14,7 +14,10 @@ public class LeetCodeProblems {
             nums[currentIndex] = 0;
             currentIndex++;
         }
-        System.out.println(nums);
+        for(int n : nums)
+        {
+            System.out.println(n);
+        }
     }
 
     public static List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
@@ -161,30 +164,52 @@ public class LeetCodeProblems {
 
     public static String replaceWhitespace(String input,int trueLenght)
     {
-        String wordWithWhitespace = input;
-        String wordWithoutWhitespaces;
+        //String input ="Mr John    Smith BBBBB    ";
+        //int trueLenght = 17;
+        String trueString = input.substring(0,trueLenght);
+        String specialToReplace = "%20";
+        Boolean holder = false;
         StringBuilder builder = new StringBuilder();
-        String replace = "%20";
-        ArrayList<Integer> batchFound = new ArrayList<>();
 
-        for(int wordIndex = 0; wordIndex < trueLenght; wordIndex++)
+        for(int index = 0; index<trueLenght;index++)
         {
-            char currentletter = input.charAt(wordIndex);
-            if(currentletter==' ') {
-                batchFound.add(wordIndex);
-                System.out.println("whitespace found at index: "+wordIndex);
-                builder.append(replace);
+            if(trueString.charAt(index)!=' ')
+            {
+                if(holder)
+                {
+                    builder.append(specialToReplace);
+                    //System.out.println(specialToReplace);
+                    holder=false;
+                }
+                builder.append(trueString.charAt(index));
+                //System.out.println(trueString.charAt(index));
             }
             else {
-                builder.append(currentletter);
-                System.out.println("Current batch to clear");
-                for(int index : batchFound)
+                if(index > trueLenght-2)//TODO FAILURE
                 {
-                    System.out.println("Clearing this batch: index at :"+index);
+                    if(trueString.charAt(index)==' ')
+                    {
+                        builder.append(specialToReplace);
+                        //System.out.println(specialToReplace);
+                    }
                 }
-                batchFound.clear();
+                else {
+                    if(trueString.charAt(index-1)!=' '&&trueString.charAt(index+1)!=' ')
+                    {
+                        builder.append(specialToReplace);
+                        //System.out.println(specialToReplace);
+                    }
+                    else {
+                        holder=true;
+                        //String value = "-NEED TO CHECK-";
+                        //holder.add(value);
+                        //System.out.println(value);
+                    }
+                }
             }
+
         }
+
         return builder.toString();
     }
 
