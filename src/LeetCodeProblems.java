@@ -146,54 +146,31 @@ public class LeetCodeProblems {
         }
     }
 
-    public static String replaceWhitespace(String input,int trueLenght)
+    public static String replaceWhitespace(String baseInput,int trueLenght)
     {
         //String input ="Mr John    Smith BBBBB    ";
         //int trueLenght = 17;
-        String trueString = input.substring(0,trueLenght);
-        String specialToReplace = "%20";
-        boolean holder = false;
+        String input = baseInput.trim();
+        String specialCharacter = "%20";
         StringBuilder builder = new StringBuilder();
-
-        for(int index = 0; index<trueLenght;index++)
+        int counter = 0;
+        for(int inputIndex = 0; inputIndex < trueLenght;inputIndex++)
         {
-            if(trueString.charAt(index)!=' ')
+            counter++;
+            if(input.charAt(inputIndex)==' ')
             {
-                if(holder)
+                //check if list is populated
+                if(input.charAt(inputIndex - 1) != ' ')
                 {
-                    builder.append(specialToReplace);
-                    //System.out.println(specialToReplace);
-                    holder=false;
-                }
-                builder.append(trueString.charAt(index));
-                //System.out.println(trueString.charAt(index));
-            }
-            else {
-                if(index > trueLenght-2)//TODO FAILURE
-                {
-                    if(trueString.charAt(index)==' ')
-                    {
-                        builder.append(specialToReplace);
-                        //System.out.println(specialToReplace);
-                    }
-                }
-                else {
-                    if(trueString.charAt(index-1)!=' '&&trueString.charAt(index+1)!=' ')
-                    {
-                        builder.append(specialToReplace);
-                        //System.out.println(specialToReplace);
-                    }
-                    else {
-                        holder=true;
-                        //String value = "-NEED TO CHECK-";
-                        //holder.add(value);
-                        //System.out.println(value);
-                    }
+                    builder.append(specialCharacter);
                 }
             }
-
+            else
+            {
+                builder.append(input.charAt(inputIndex));
+            }
         }
-
+        System.out.println("This app ran a max of: "+counter+" times");
         return builder.toString();
     }
 
@@ -288,7 +265,7 @@ public class LeetCodeProblems {
         ArrayList<Character> result = new ArrayList<>();
 
         int currentIndexforNextWord = 0;
-        
+
 
         return "";
 

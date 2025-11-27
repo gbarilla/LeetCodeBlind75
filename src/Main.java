@@ -6,13 +6,14 @@ public class Main {
         // kidsWithCandies();
         // twoWordPermutation();
         // reverseVowels();
-        //replaceWhiteSpaces();
+        replaceWhiteSpaces();
         //reverseWords();
         //productExceptSelf();
         //findMaxAverage();
         //gcdOfStrings();
         //get_robots();
-        getMaximumNumberOfVowels();
+        //getMaximumNumberOfVowels();
+        //
     }
 
     private static void getMaximumNumberOfVowels()
@@ -150,8 +151,9 @@ public class Main {
     public static void replaceWhiteSpaces()
     {
         String input ="M  r Jo h  n Smith   ";
+        String input2 = "Mr John    Smith BBBBB";
         int trueLenght = 17;
-        System.out.println(LeetCodeProblems.replaceWhitespace(input,trueLenght));
+        System.out.println(LeetCodeProblems.replaceWhitespace(input2,trueLenght));
     }
 
     public static void twoWordPermutation()
