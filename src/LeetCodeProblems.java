@@ -24,21 +24,15 @@ public class LeetCodeProblems {
 
         List<Boolean> result = new ArrayList<>();
         int maxNumber = 0;
-        for(int index = 0; index < candies.length;index++)
-        {
-            if(maxNumber < candies[index])
-            {
-                maxNumber = candies[index];
+        for (int candy : candies) {
+            if (maxNumber < candy) {
+                maxNumber = candy;
             }
         }
-        for(int secondIndex = 0; secondIndex < candies.length;secondIndex++)
-        {
-            if(candies[secondIndex]+extraCandies >= maxNumber)
-            {
+        for (int candy : candies) {
+            if (candy + extraCandies >= maxNumber) {
                 result.add(true);
-            }
-            else
-            {
+            } else {
                 result.add(false);
             }
         }
@@ -52,7 +46,7 @@ public class LeetCodeProblems {
         int frequency = 1;
         int word1Lenght = word1.length();
         int word2Lenght = word2.length();
-        if(word1Lenght != word2Lenght || word1.isEmpty()|| word2.isEmpty())
+        if(word1Lenght != word2Lenght || word1.isEmpty())
         {
             return result;
         }
@@ -127,21 +121,11 @@ public class LeetCodeProblems {
             vowel.add('I');
             vowel.add('O');
             vowel.add('U');
-            if(s.isEmpty())
+            for(int x = s.length()-1; x>-1;x--)
             {
-                return "";
-            }
-            else if(s.length() ==1)
-            {
-                return s;
-            }
-            else {
-                for(int x = s.length()-1; x>-1;x--)
+                if(vowel.contains(s.charAt(x)))
                 {
-                    if(vowel.contains(s.charAt(x)))
-                    {
-                        reverseVowels.add(s.charAt(x));
-                    }
+                    reverseVowels.add(s.charAt(x));
                 }
             }
 
@@ -168,7 +152,7 @@ public class LeetCodeProblems {
         //int trueLenght = 17;
         String trueString = input.substring(0,trueLenght);
         String specialToReplace = "%20";
-        Boolean holder = false;
+        boolean holder = false;
         StringBuilder builder = new StringBuilder();
 
         for(int index = 0; index<trueLenght;index++)
@@ -252,11 +236,9 @@ public class LeetCodeProblems {
         ArrayList<String> wordArrayWithoutSpaces = new ArrayList<>();
         String space = " ";
 
-        for(int currentIndex = 0; currentIndex< wordArray.length ; currentIndex++)
-        {
-            if(!wordArray[currentIndex].isEmpty())
-            {
-                wordArrayWithoutSpaces.add(wordArray[currentIndex]);
+        for (String value : wordArray) {
+            if (!value.isEmpty()) {
+                wordArrayWithoutSpaces.add(value);
             }
         }
 
@@ -276,7 +258,6 @@ public class LeetCodeProblems {
     public static double findMaxAverage(int[] nums, int k) {
 
 
-        int windowSize = k;
         //int startIndexForWindow = 0;
         //int endIndexForWindow = k;
 
@@ -291,8 +272,7 @@ public class LeetCodeProblems {
         int sum = 0;
         for(int index = 0; index<nums.length+1;index++)
         {
-            int end = k;
-            if(index<end)
+            if(index< k)
             {
                 sum = sum+nums[index];
             }
@@ -308,35 +288,7 @@ public class LeetCodeProblems {
         ArrayList<Character> result = new ArrayList<>();
 
         int currentIndexforNextWord = 0;
-
-        for(int index = 0; index < str1.length()&&index < str2.length();index++)
-        {
-            Character currentStr1Value=' ';
-            Character currentStr2Value=' ';
-
-
-            if(index < str1.length())
-            {
-                currentStr1Value = str1.charAt(index);
-            }
-            if(index < str2.length())
-            {
-                currentStr2Value = str2.charAt(index);
-            }
-
-            if(currentStr1Value == currentStr2Value)
-            {
-                result.add(currentStr1Value);
-            }
-
-
-            if(index > str1.length())
-            {
-
-            }
-
-
-        }
+        
 
         return "";
 
@@ -344,7 +296,7 @@ public class LeetCodeProblems {
 
     public static ArrayList<String> get_robots(String[] all_parts, String required_parts)
     {
-        HashMap<String,Set<String>> robotParts = new HashMap<String,Set<String>>();
+        HashMap<String,Set<String>> robotParts = new HashMap<>();
         String[] allRequiredParts = required_parts.split(",");
         for(String currentAllPartString : all_parts)
         {
@@ -374,13 +326,11 @@ public class LeetCodeProblems {
         for(String robotName : allRobotNames)
         {
             Set<String> robotPart = robotParts.get(robotName);
-            Boolean isCompatible = true;
-            for(int index = 0; index<allRequiredParts.length;index++)
-            {
-                String requiredPart = allRequiredParts[index];
-                if(!robotPart.contains(requiredPart))
-                {
-                    isCompatible=false;
+            boolean isCompatible = true;
+            for (String requiredPart : allRequiredParts) {
+                if (!robotPart.contains(requiredPart)) {
+                    isCompatible = false;
+                    break;
                 }
             }
             if(isCompatible)
@@ -389,8 +339,59 @@ public class LeetCodeProblems {
             }
         }
         return result;
+    }
 
+    public static int maxVowels(String s, int k) {
+        System.out.println(s);
+        System.out.println(k);
+        Set<Character> vowels = new HashSet<>();
+        vowels.add('a');
+        vowels.add('e');
+        vowels.add('i');
+        vowels.add('o');
+        vowels.add('u');
+        int currentMax = 0;
+        int windowStartIndex = 0;
+        StringBuilder builder = new StringBuilder();
+        int isFirstVowel = 0;
 
+        int counter = 0;
+        int numberOfVowels = 0;
 
+        //we dont want to track the window. we want to track the rolling result.
+        for(int indexForFirstWindow = windowStartIndex; indexForFirstWindow < k; indexForFirstWindow++)
+        {
+            counter++;
+            if(vowels.contains(s.charAt(indexForFirstWindow)))
+            {
+                numberOfVowels++;
+            }
+        }
+        //ill have the result of the first one;
+
+        for(int currentIndex = k; currentIndex<s.length(); currentIndex++)
+        {
+            counter++;
+            if(currentMax<numberOfVowels)
+            {
+                currentMax = numberOfVowels;
+            }
+            if(vowels.contains(s.charAt(windowStartIndex)))
+            {
+                numberOfVowels = numberOfVowels - 1;
+            }
+            if(vowels.contains(s.charAt(currentIndex)))
+            {
+                numberOfVowels = numberOfVowels + 1;
+            }
+            if(numberOfVowels == k )
+            {
+                System.out.println("THIS HAS RUN: "+counter+" times");
+                return numberOfVowels;
+            }
+            windowStartIndex++;
+        }
+        System.out.println("THIS HAS RUN: "+counter+" times");
+        return currentMax;
     }
 }
