@@ -425,4 +425,31 @@ public class LeetCodeProblems {
         Integer[] result = {innerSetting,outerSetting};
         return result;
     }
+
+
+    public static boolean isSubsequence(String sequence, String input) {
+        if(sequence.isEmpty())
+        {
+            return true;
+        }
+
+        int indexOfSequence = 0;
+        int lenghtOfAllCharacterInSequence = sequence.length();
+        char currentLetterToCompareFromSequence = sequence.charAt(indexOfSequence);
+
+        char[] inputCharacters = input.toCharArray();
+        for(Character currentCharacter: inputCharacters)
+        {
+            if(currentCharacter == currentLetterToCompareFromSequence)
+            {
+                indexOfSequence++;
+                if(indexOfSequence < lenghtOfAllCharacterInSequence)
+                {
+                    currentLetterToCompareFromSequence = sequence.charAt(indexOfSequence);
+                }
+            }
+        }
+
+        return indexOfSequence == lenghtOfAllCharacterInSequence;
+    }
 }
