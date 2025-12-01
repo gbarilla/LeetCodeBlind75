@@ -368,7 +368,61 @@ public class LeetCodeProblems {
             }
             windowStartIndex++;
         }
+
         System.out.println("THIS HAS RUN: "+counter+" times");
         return currentMax;
+    }
+
+    public static ArrayList<Integer[]> calculateGrinderSettings(int innerburSetting, int outerBurSetting)
+    {
+        int innerBurMaxShifts = 8;
+        int outerBurMaxShifts = 16;
+        int estimatedShiftEquivalent = 3;
+        ArrayList<ArrayList<Integer>> allsettings = new ArrayList<>();
+
+        //5+6-1=10
+
+        ArrayList<Integer> firstWindow = new ArrayList<>();
+        for(int i =1; i < outerBurMaxShifts+1; i++)
+        {
+            firstWindow.add(i);
+        }
+        allsettings.add(firstWindow);
+
+        for(int round = 1; round < innerBurMaxShifts;round++)
+        {
+            ArrayList<Integer> nextWindow = new ArrayList<>();
+            ArrayList<Integer> pastWindow = allsettings.get(round-1);
+            for(Integer value :pastWindow)
+            {
+                nextWindow.add(value+estimatedShiftEquivalent);
+            }
+            allsettings.add(nextWindow);
+        }
+
+        int value = allsettings.get(innerburSetting).get(outerBurSetting);
+        ArrayList<Integer[]> result = new ArrayList<>();
+
+        for(int currentRound = innerburSetting-1; currentRound>0;currentRound--)
+        {
+            var currentSettingsList = allsettings.get(currentRound);
+            for(int indexOfValue = 0; indexOfValue<currentSettingsList.size();indexOfValue++)
+            {
+                int currentValue = currentSettingsList.get(indexOfValue);
+                if(currentValue==value)
+                {
+                    result.add(compatableSettings(currentRound,indexOfValue));
+                }
+            }
+        }
+
+        return result;
+
+    }
+
+    private static Integer[] compatableSettings(int innerSetting, int outerSetting)
+    {
+        Integer[] result = {innerSetting,outerSetting};
+        return result;
     }
 }

@@ -6,15 +6,27 @@ public class Main {
         // kidsWithCandies();
         // twoWordPermutation();
         // reverseVowels();
-        replaceWhiteSpaces();
+        //replaceWhiteSpaces();
         //reverseWords();
         //productExceptSelf();
         //findMaxAverage();
         //gcdOfStrings();
         //get_robots();
         //getMaximumNumberOfVowels();
-        //
+        calculateCommonShifts();
     }
+
+    public static void calculateCommonShifts()
+    {
+        int innerGear = 3;
+        int outerGear = 5;
+        var result = LeetCodeProblems.calculateGrinderSettings(innerGear,outerGear);
+        for(var row : result)
+        {
+            System.out.println(row.toString());
+        }
+    }
+
 
     private static void getMaximumNumberOfVowels()
     {
@@ -45,6 +57,9 @@ public class Main {
 
         String input2 = "aeiou";
         int k2 = 2;
+
+        String input3="weallloveyou";
+        int k3 = 4;
 
         LeetCodeProblems.maxVowels(input1,k);
     }
