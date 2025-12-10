@@ -319,58 +319,57 @@ public class LeetCodeProblems {
     }
 
     public static int maxVowels(String s, int k) {
-        System.out.println(s);
-        System.out.println(k);
+        //System.out.println(s);
+        //System.out.println(k);
         Set<Character> vowels = new HashSet<>();
         vowels.add('a');
         vowels.add('e');
         vowels.add('i');
         vowels.add('o');
         vowels.add('u');
-        int currentMax = 0;
-        int windowStartIndex = 0;
-        StringBuilder builder = new StringBuilder();
-        int isFirstVowel = 0;
 
-        int counter = 0;
-        int numberOfVowels = 0;
+        int countOfCurrentWindow = 0;
+        int maxCount = 0;
 
-        //we dont want to track the window. we want to track the rolling result.
-        for(int indexForFirstWindow = windowStartIndex; indexForFirstWindow < k; indexForFirstWindow++)
+        for(int i = 0; i < k ; i++)
         {
-            counter++;
-            if(vowels.contains(s.charAt(indexForFirstWindow)))
+            Character currentLetter = s.charAt(i);
+            if(vowels.contains(s.charAt(i)))
             {
-                numberOfVowels++;
+                countOfCurrentWindow++;
             }
         }
-        //ill have the result of the first one;
 
-        for(int currentIndex = k; currentIndex<s.length(); currentIndex++)
+        for(int windowEnd = k; windowEnd < s.length();windowEnd++)
         {
-            counter++;
-            if(currentMax<numberOfVowels)
+            //System.out.println("The window is currently at:" + (windowEnd-k));
+            //System.out.println("The window is currently at:" + (windowEnd));
+
+            int currentCount = countOfCurrentWindow;
+
+            if(countOfCurrentWindow > maxCount)
             {
-                currentMax = numberOfVowels;
+                maxCount = countOfCurrentWindow;
             }
-            if(vowels.contains(s.charAt(windowStartIndex)))
+
+            Character letterToAdd = s.charAt(windowEnd);
+            if(vowels.contains(letterToAdd))
             {
-                numberOfVowels = numberOfVowels - 1;
+                countOfCurrentWindow++;
             }
-            if(vowels.contains(s.charAt(currentIndex)))
+            Character letterToRemove = s.charAt(windowEnd-k);
+            if(vowels.contains(letterToRemove))
             {
-                numberOfVowels = numberOfVowels + 1;
+                countOfCurrentWindow--;
             }
-            if(numberOfVowels == k )
-            {
-                System.out.println("THIS HAS RUN: "+counter+" times");
-                return numberOfVowels;
-            }
-            windowStartIndex++;
         }
 
-        System.out.println("THIS HAS RUN: "+counter+" times");
-        return currentMax;
+        if(countOfCurrentWindow > maxCount)
+        {
+            maxCount = countOfCurrentWindow;
+        }
+
+        return maxCount;
     }
 
     public static ArrayList<Integer[]> calculateGrinderSettings(int innerburSetting, int outerBurSetting)
@@ -452,4 +451,259 @@ public class LeetCodeProblems {
 
         return indexOfSequence == lenghtOfAllCharacterInSequence;
     }
+
+    public static int largestAltitude(int[] gain) {
+        // {-5,1,5,0,-7};
+        // 0 -5 , -4 , 1 , 1 , -6
+        //[0,-5,-4,1,1,-6]
+        int largestAltitude = 0;
+        int currentDifference = 0;
+        //int difference = trail.get(index) + gain[index];
+
+        for(int value : gain)
+        {
+            if(currentDifference > largestAltitude)
+            {
+                largestAltitude = currentDifference;
+            }
+            currentDifference = currentDifference + value;
+        }
+
+        return largestAltitude;
+    }
+
+    public static void headTalesGame()
+    {
+        int[] s0 = {0,0,0};
+        int[] s1 = {0,0,1};
+        int[] s2 = {0,1,0};
+        int[] s3 = {0,1,1};
+        int[] s4 = {1,0,0};
+        int[] s5 = {1,0,1};
+        int[] s6 = {1,1,0};
+        int[] s7 = {1,1,1};
+
+        ArrayList<Integer> games = new ArrayList<>();
+
+        int numberOfItemsInSequence = 3;
+
+
+        int numberOfGames = 100;
+
+        //Penney’s ante
+
+        int[] currentWindow = {0,0,0};
+
+        int timesPlayer1Won = 0;
+        int timesPlayer2Won = 0;
+
+        int startingIndex = 0;
+
+
+        for(int i = 0; i<numberOfGames;i++)
+        {
+            double value = Math.random();
+            int side = 0;
+            if(value>0.5)
+            {
+                side = 1;
+            }
+
+            games.add(side);
+            if(i>=2)
+            {
+                if(games.get(startingIndex)==s0[0])
+                {
+                    if(games.get(startingIndex+1)==s0[1])
+                    {
+                        if(games.get(startingIndex+2)==s0[2])
+                        {
+                            timesPlayer1Won++;
+                        }
+                    }
+                }
+                if(games.get(startingIndex)==s4[0])
+                {
+                    if(games.get(startingIndex+1)==s4[1])
+                    {
+                        if(games.get(startingIndex+2)==s4[2])
+                        {
+                            timesPlayer2Won++;
+                        }
+                    }
+                }
+                startingIndex++;
+            }
+        }
+
+        StringBuilder builder = new StringBuilder();
+        builder.append("Player 1 has won a total of: ");
+        builder.append(timesPlayer1Won);
+        builder.append(" times. With a percentage of: ");
+        int totalNumberOfGames = timesPlayer1Won + timesPlayer2Won;
+        double percentWon1 = (double)timesPlayer1Won/totalNumberOfGames;
+        builder.append(percentWon1);
+        System.out.println(builder.toString());
+
+        StringBuilder builder2 = new StringBuilder();
+        builder2.append("Player 2 has won a total of: ");
+        builder2.append(timesPlayer2Won);
+        builder2.append(" times. With a percentage of: ");
+        double percentWon2 = (double)timesPlayer2Won/totalNumberOfGames;
+        builder2.append(percentWon2);
+        System.out.println(builder2.toString());
+
+    }
+
+    public static List<List<Integer>> findDifference(int[] nums1, int[] nums2) {
+        Set<Integer> unique1 = new HashSet<>();
+        Set<Integer> unique2 = new HashSet<>();
+        for(int value: nums1)
+        {
+            unique1.add(value);
+        }
+
+        for(int value: nums2)
+        {
+            unique2.add(value);
+        }
+
+        ArrayList<Integer> unique1Array = new ArrayList<>();
+        for(int value : unique1)
+        {
+            if(!unique2.contains(value))
+            {
+                unique1Array.add(value);
+            }
+        }
+
+        ArrayList<Integer> unique2Array = new ArrayList<>();
+        for(int value : unique2)
+        {
+            if(!unique1.contains(value))
+            {
+                unique2Array.add(value);
+            }
+        }
+
+        List<List<Integer>> result = new ArrayList<>();
+        result.add(unique1Array);
+        result.add(unique2Array);
+
+        return result;
+
+
+    }
+
+    public static boolean uniqueOccurrences(int[] arr) {
+
+        boolean result = false;
+        HashMap<Integer,Integer> dictionary = new HashMap<>();
+
+        for(int value : arr)
+        {
+            System.out.println("The currentValue to evaluate is: "+value);
+            if(dictionary.containsKey(value))
+            {
+                int counter = dictionary.get(value);
+                counter++;
+                dictionary.put(value,counter);
+            }
+            else
+            {
+                dictionary.put(value,1);
+            }
+        }
+
+        Set<Integer> keys = dictionary.keySet();
+        Set<Integer> values = new HashSet<>();
+
+        for(int key : keys)
+        {
+            Integer currentFequence = dictionary.get(key);
+            //[3,2,1]
+            //[2,2,1]
+
+            if(!values.contains(currentFequence))
+            {
+                values.add(currentFequence);
+            }
+            else
+            {
+                return result;
+            }
+        }
+        result = true;
+        return result;
+    }
+
+    public static boolean isOneAway(String original, String edited)
+    {
+        int originalLenght = original.length();
+        int editedLenght = edited.length();
+        String smallest = edited;
+        String largest = original;
+        int changeCounter = 0;
+        if(originalLenght < editedLenght)
+        {
+            smallest = original;
+            largest = edited;
+        }
+        int differnce = largest.length() - smallest.length();
+        if(differnce>1||largest.length() < 1)
+        {
+            return false;
+        }
+        else
+        {
+            for(int i = 0; i < smallest.length();i++)
+            {
+                System.out.println("This ran a total of x many tines: "+ i);
+                if(changeCounter > 1)
+                {
+                    return false;
+                }
+                if(smallest.charAt(i) != largest.charAt(i))
+                {
+                    changeCounter++;
+                }
+            }
+            return true;
+        }
+    }
+
+    public static String stringCompresssion(String input)
+    {
+        StringBuilder builder = new StringBuilder();
+        Character currentLetter = input.charAt(0);
+        int currentCounter = 0;
+        int uniqueCounter = 1;
+        for(int i = 0 ; i < input.length();i++)
+        {
+            if(currentLetter == input.charAt(i))
+            {
+                currentCounter++;
+            }
+            else
+            {
+                uniqueCounter++;
+                builder.append(currentLetter);
+                builder.append(currentCounter);
+                currentCounter = 1;
+                currentLetter = input.charAt(i);
+            }
+        }
+        builder.append(currentLetter);
+        builder.append(currentCounter);
+
+        if(builder.length() < input.length())
+        {
+            return builder.toString();
+        }
+        else
+        {
+            return input;
+        }
+    }
+
 }

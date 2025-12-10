@@ -14,7 +14,92 @@ public class Main {
         //get_robots();
         //getMaximumNumberOfVowels();
         //calculateCommonShifts();
-        identifySequenceInString();
+        //identifySequenceInString();
+        //largestAltitude();
+        //LeetCodeProblems.headTalesGame();
+        //uniquenessInArrays();
+        //uniqueNumberOfOccurances();
+        //oneAway();
+        basicStringCompression();
+    }
+
+    public static void basicStringCompression()
+    {
+        String input = "aabcdefghij";
+        String result = LeetCodeProblems.stringCompresssion(input);
+        System.out.println(result);
+    }
+
+    public static void oneAway()
+    {
+        String orignal = "HELLO00000";
+        String revised = "HASLO00000";
+        boolean result  = LeetCodeProblems.isOneAway(orignal,revised);
+
+        if(result)
+        {
+            System.out.println("This combination is one edit way");
+        }
+        else
+        {
+            System.out.println("This combination is NNNNOOOTTTT one edit away");
+        }
+    }
+
+    public static void uniqueNumberOfOccurances()
+    {
+        /*
+        1207. Unique Number of Occurrences
+        Given an array of integers arr, return true if the number of occurrences of each value in the array is unique or false otherwise.
+
+        Example 1:
+
+        Input: arr = [1,2,2,1,1,3]
+        Output: true
+        Explanation: The value 1 has 3 occurrences, 2 has 2 and 3 has 1. No two values have the same number of occurrences.
+        Example 2:
+
+        Input: arr = [1,2]
+        Output: false
+
+         */
+        int[] arr = {1,2,2,1,1,3};
+        boolean result = LeetCodeProblems.uniqueOccurrences(arr);
+
+        if(result)
+        {
+            System.out.println("This has unique occurances");
+        }
+        else
+        {
+            System.out.println("This frequency repeats ");
+        }
+
+    }
+
+    public static void uniquenessInArrays()
+    {
+        //int[] nums1 = new int[0]; - Same thing essentially since you are just
+        //int[] nums2 = {}; declaring a empty fixed array unlike the arrayList
+
+        /*
+            2215. Find the Difference of Two Arrays
+            Given two 0-indexed integer arrays nums1 and nums2, return a list answer of size 2 where:
+
+            answer[0] is a list of all distinct integers in nums1 which are not present in nums2.
+            answer[1] is a list of all distinct integers in nums2 which are not present in nums1.
+            Note that the integers in the lists may be returned in any order.
+         */
+
+        /*
+            Input: nums1 = [1,2,3], nums2 = [2,4,6]
+            Output: [[1,3],[4,6]]
+         */
+
+
+        int[] nums1 = {1,2,3};
+        int[] nums2 = {2,4,6};
+        LeetCodeProblems.findDifference(nums1,nums2);
     }
 
     public static void identifySequenceInString()
@@ -83,9 +168,12 @@ public class Main {
         int k2 = 2;
 
         String input3="weallloveyou";
-        int k3 = 4;
+        int k4 = 4;
+        int k7 = 7;
 
-        LeetCodeProblems.maxVowels(input1,k);
+        String input4="tryhard";
+
+        System.out.println(LeetCodeProblems.maxVowels(input3,k7));
     }
 
     private static void get_robots() {
@@ -161,7 +249,7 @@ public class Main {
         //expected output = world hello
         String phrase2 = "  hello world  ";
 
-        System.out.println(LeetCodeProblems.reverseWords(phrase2));
+        System.out.println(LeetCodeProblems.reverseWords(phrase));
     }
 
     public static void MoveZeroes()
@@ -233,6 +321,13 @@ public class Main {
         }
 
         return stringBuilder.toString();
+    }
+
+    public static void largestAltitude() {
+        int[] gain = {-5,1,5,0,-7};
+        int[] gain2 = {-4,-3,-2,-1,4,3,2};
+        int result = LeetCodeProblems.largestAltitude(gain2);
+        System.out.println(result);
     }
 }
 
