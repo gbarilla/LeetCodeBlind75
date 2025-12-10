@@ -213,9 +213,11 @@ public class LeetCodeProblems {
         ArrayList<String> wordArrayWithoutSpaces = new ArrayList<>();
         String space = " ";
 
-        for (String value : wordArray) {
-            if (!value.isEmpty()) {
-                wordArrayWithoutSpaces.add(value);
+        for(int currentIndex = 0; currentIndex< wordArray.length ; currentIndex++)
+        {
+            if(!wordArray[currentIndex].isEmpty())
+            {
+                wordArrayWithoutSpaces.add(wordArray[currentIndex]);
             }
         }
 
@@ -235,6 +237,7 @@ public class LeetCodeProblems {
     public static double findMaxAverage(int[] nums, int k) {
 
 
+        int windowSize = k;
         //int startIndexForWindow = 0;
         //int endIndexForWindow = k;
 
@@ -249,7 +252,8 @@ public class LeetCodeProblems {
         int sum = 0;
         for(int index = 0; index<nums.length+1;index++)
         {
-            if(index< k)
+            int end = k;
+            if(index<end)
             {
                 sum = sum+nums[index];
             }
@@ -266,6 +270,34 @@ public class LeetCodeProblems {
 
         int currentIndexforNextWord = 0;
 
+        for(int index = 0; index < str1.length()&&index < str2.length();index++)
+        {
+            Character currentStr1Value=' ';
+            Character currentStr2Value=' ';
+
+
+            if(index < str1.length())
+            {
+                currentStr1Value = str1.charAt(index);
+            }
+            if(index < str2.length())
+            {
+                currentStr2Value = str2.charAt(index);
+            }
+
+            if(currentStr1Value == currentStr2Value)
+            {
+                result.add(currentStr1Value);
+            }
+
+
+            if(index > str1.length())
+            {
+
+            }
+
+
+        }
 
         return "";
 
