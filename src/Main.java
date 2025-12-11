@@ -20,7 +20,14 @@ public class Main {
         //uniquenessInArrays();
         //uniqueNumberOfOccurances();
         //oneAway();
-        basicStringCompression();
+        //basicStringCompression();
+        longestConsecutive();
+    }
+
+    public static void longestConsecutive()
+    {
+        int[] nums = {9,1,4,7,3,-1,0,5,8,-1,6};
+        System.out.println("The longest consecutive is: "+LeetCodeProblems.longestConsecutive(nums));
     }
 
     public static void basicStringCompression()

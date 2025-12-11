@@ -738,4 +738,84 @@ public class LeetCodeProblems {
         }
     }
 
+    public static int longestConsecutive(int[] nums) {
+        int largestConsecutiveOrder = 0;
+        if(nums.length==0)
+        {
+            return 0;
+        }
+        int previousValue  = nums[0];
+        if(nums.length == 1)
+        {
+            return 1;
+        }
+        int[] sorted = Arrays.stream(nums).sorted().toArray();
+        previousValue = sorted[0];
+        int currentLargest = 1;
+        for(int i =1; i < sorted.length;i++)
+        {
+            if(currentLargest > largestConsecutiveOrder)
+            {
+                largestConsecutiveOrder = currentLargest;
+            }
+            int currentValue = sorted[i];
+            int difference = Math.abs(currentValue-previousValue);
+            if(difference==1)
+            {
+                currentLargest++;
+                previousValue = sorted[i];
+            }
+            else if(difference==0)
+            {
+                previousValue = sorted[i];
+            }
+            else {
+                currentLargest = 1;
+                previousValue = sorted[i];
+            }
+        }
+        if(currentLargest > largestConsecutiveOrder)
+        {
+            largestConsecutiveOrder = currentLargest;
+        }
+
+        return largestConsecutiveOrder;
+    }
+
+    public static int revisedLongestConsecutive(int[] nums)
+    {
+        Set<Integer> removeDuplicates = new HashSet<>();
+        if(nums.length==0)
+        {
+            return 0;
+        }
+        if(nums.length == 1)
+        {
+            return 1;
+        }
+        for(int values:nums)
+        {
+            removeDuplicates.add(values);
+        }
+
+        int maxlenght = 0;
+
+        for( int currentValue : removeDuplicates)
+        {
+            if(!removeDuplicates.contains(currentValue-1))//What is your starting condition. Attempt to build and check possibilitys while going forward,
+            {
+                int currentNum = currentValue;
+                int currentLenght = 1;
+
+                while(removeDuplicates.contains(currentNum+1))
+                {
+                    currentNum++;
+                    currentLenght++;
+                }
+
+                maxlenght = Math.max(maxlenght,currentLenght);
+            }
+        }
+        return maxlenght;
+    }
 }
