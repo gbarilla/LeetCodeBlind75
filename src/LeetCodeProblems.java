@@ -909,4 +909,42 @@ public class LeetCodeProblems {
 
         return result;
     }
+    public static List<String> fizzBuzz(int input)
+    {
+        List<String> result = new ArrayList<>();
+        for(int i = 1; i <= input;i++)
+        {
+
+            if(i%3==0&&i%5==0)
+            {
+                result.add("FizzBuzz");
+            }
+            else if(i%5==0)
+            {
+                result.add("Buzz");
+            }
+            else if(i%3==0)
+            {
+                result.add("Fizz");
+            }
+            else
+            {
+                result.add(""+i);
+            }
+        }
+
+        return result;
+    }
+
+    public static int lastStoneWeight(int[] stones) {
+        int result = 0;
+
+        //get largest value
+        //get second largest value
+        //smash
+        //resuffle array
+        //Then go again until your down to smallest rocks
+        return result;
+    }
+
 }
