@@ -26,9 +26,10 @@ public class Main {
         //coinChange();
         //basicStringCompression();
         //FizzBuzz();
-        lastStoneWeight();
+        //lastStoneWeight();
         //minimumAbsDifference();
         //importantClassesToKnow();
+        longestSubstringWithoutRepeating();
     }
 
     public static void minimumAbsDifference()
@@ -71,6 +72,13 @@ public class Main {
         int[] input = {2,7,4,1,8,1};
         int result = LeetCodeProblems.lastStoneWeight(input);
         System.out.println(result);
+    }
+
+    public static void longestSubstringWithoutRepeating()
+    {
+        String input = "pwwkew";
+        int result = LeetCodeProblems.longestSubstringWithoutRepeating(input);
+        System.out.println("The longest is: "+result);
     }
 
     public static void FizzBuzz()

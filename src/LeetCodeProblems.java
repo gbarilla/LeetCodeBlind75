@@ -956,4 +956,37 @@ public class LeetCodeProblems {
         return maxTop.peek();
     }
 
+    public static int longestSubstringWithoutRepeating(String s)
+    {
+        if(s.isEmpty())
+        {
+            return 0;
+        }
+        int result = 1;
+        int currentCounter = 0;
+        Set<Character> currentLetters = new HashSet<>();
+        for(int i =0; i<s.length();i++)
+        {
+            if(!currentLetters.contains(s.charAt(i)))
+            {
+                currentLetters.add(s.charAt(i));
+            }
+            else {
+                int currentSize = currentLetters.size();
+                if(currentSize>result) {
+                    result = currentSize;
+                }
+                currentLetters.clear();
+                i = currentCounter++;
+            }
+        }
+
+        if(currentLetters.size()>result) {
+            result = currentLetters.size();
+        }
+
+        return result;
+    }
+
+
 }
