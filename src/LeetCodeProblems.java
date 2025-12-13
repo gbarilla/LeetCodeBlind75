@@ -938,13 +938,22 @@ public class LeetCodeProblems {
 
     public static int lastStoneWeight(int[] stones) {
         int result = 0;
+        PriorityQueue<Integer> maxTop = new PriorityQueue<>(Collections.reverseOrder());
 
-        //get largest value
-        //get second largest value
-        //smash
-        //resuffle array
-        //Then go again until your down to smallest rocks
-        return result;
+        for(int stone: stones)
+        {
+            maxTop.add(stone);
+        }
+
+        while(maxTop.size()!=1)
+        {
+            int largest = maxTop.poll();
+            int secondLargest = maxTop.poll();
+            int difference = largest-secondLargest;
+            maxTop.add(difference);
+        }
+
+        return maxTop.peek();
     }
 
 }
