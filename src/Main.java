@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.function.Consumer;
 
 public class Main {
     public static void main(String[] args) {
@@ -20,7 +21,39 @@ public class Main {
         //uniquenessInArrays();
         //uniqueNumberOfOccurances();
         //oneAway();
-        basicStringCompression();
+        //basicStringCompression();
+        //FizzBuzz();
+        //lastStoneWeight();
+        importantClassesToKnow();
+    }
+
+    public static void importantClassesToKnow()
+    {
+        var allClasses = FoundationReference.listOfMajorClasses();
+        Consumer<List<String>> printAll = (n) -> {
+            System.out.println(n);
+        };
+        printAll.accept(allClasses);
+        printAll.accept(FoundationReference.implementallFeaturesOfList());
+        FoundationReference.priorityQueueCheatSheet();
+
+    }
+
+    public static void lastStoneWeight()
+    {
+        int[] input = {2,7,4,1,8,1};
+        int result = LeetCodeProblems.lastStoneWeight(input);
+        System.out.println(result);
+    }
+
+    public static void FizzBuzz()
+    {
+        int input = 15;
+        List<String> result = LeetCodeProblems.fizzBuzz(input);
+        Consumer<List<String>> printer = (n) -> {
+            System.out.println(n);
+        };
+        printer.accept(result);
     }
 
     public static void basicStringCompression()
