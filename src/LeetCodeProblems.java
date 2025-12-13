@@ -818,4 +818,95 @@ public class LeetCodeProblems {
         }
         return maxlenght;
     }
+
+    public static int coinChange(int[] coins, int amount) {
+        int currentCounter = 1;
+        if(amount == 0)
+        {
+            return 0;
+        }
+        Set uniqueCoins = new HashSet();
+        for(int coin : coins)
+        {
+            uniqueCoins.add(coin);
+        }
+        int[] sorted = Arrays.stream(coins).sorted().toArray();
+
+        int currentValue = sorted[sorted.length-1];
+        for(int i = sorted.length-1; i >=1; i--)
+        {
+            int remainder = amount%currentValue;
+            if(uniqueCoins.contains(remainder))
+            {
+                return ((amount-remainder)/currentValue)/currentCounter+1;
+            }
+            if(remainder == 0)
+            {
+                return ((amount-remainder)/currentValue)/currentCounter;
+            }
+            else {
+                currentValue = currentValue+sorted[i-1];
+                currentCounter++;
+
+            }
+        }
+        return currentCounter;
+    }
+
+    public static List<List<Integer>> minimumAbsDifference(int[] arr) {
+        List<List<Integer>> result = new ArrayList<>();
+        int[] sortedArray = Arrays.stream(arr).sorted().toArray();
+
+        if(arr.length==0)
+        {
+            return result;
+        }
+        if(arr.length==1)
+        {
+            return result;
+        }
+        if(arr.length==2)
+        {
+            List<Integer> firstpair = new ArrayList<>();
+            firstpair.add(arr[0]);
+            firstpair.add(arr[1]);
+            result.add(firstpair);
+            return result;
+        }
+
+        int a = sortedArray[0];
+        int b = sortedArray[1];
+
+        int firstDistance = b-a;
+        int minimumDistance = firstDistance;
+
+        for(int i =1; i < sortedArray.length;i++)
+        {
+            a = sortedArray[i-1];
+            b = sortedArray[i];
+
+            firstDistance = b-a;
+            if(firstDistance < minimumDistance)
+            {
+                minimumDistance = firstDistance;
+            }
+        }
+
+        for(int i =1; i < sortedArray.length;i++)
+        {
+            a = sortedArray[i-1];
+            b = sortedArray[i];
+
+            firstDistance = b-a;
+            if(firstDistance == minimumDistance)
+            {
+                List<Integer> pair = new ArrayList<>();
+                pair.add(a);
+                pair.add(b);
+                result.add(pair);
+            }
+        }
+
+        return result;
+    }
 }

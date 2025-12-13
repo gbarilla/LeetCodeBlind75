@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.function.Consumer;
 
 public class Main {
     public static void main(String[] args) {
@@ -21,7 +22,25 @@ public class Main {
         //uniqueNumberOfOccurances();
         //oneAway();
         //basicStringCompression();
-        longestConsecutive();
+        //longestConsecutive();
+        //coinChange();
+        minimumAbsDifference();
+    }
+
+    public static void minimumAbsDifference()
+    {
+        int[] arr = {1,3,6,10,15};
+        List<List<Integer>> result = LeetCodeProblems.minimumAbsDifference(arr);
+        Consumer<List<List<Integer>>> test = (n) -> System.out.println(n.toString());
+        test.accept(result);
+    }
+
+    public static void coinChange()
+    {
+        int[] coins = {1,2,5};
+        int amount = 11;
+        int result = LeetCodeProblems.coinChange(coins,amount);
+        System.out.println(result);
     }
 
     public static void longestConsecutive()
