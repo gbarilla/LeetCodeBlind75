@@ -33,28 +33,25 @@ public class Main {
         //largestIncreasingSubsequence();
         //interpretRoman();
         //BuySellEffieciently();
-        mustCompleteCopy();
+        //mustCompleteCopy();
     }
 
     public static void mustCompleteCopy()
     {
         String input = "()";
-        Boolean result = LeetCodeProblems.isValid(input);
-        System.out.println("The string: "+input+" is "+result);
+        UtilsTemplates.display(input,LeetCodeProblems::isValid);
     }
 
     public static void BuySellEffieciently()
     {
         int[] input = {7,1,5,3,6,4};
-        int result = LeetCodeProblems.maxProfit(input);
-        System.out.println(result);
+        UtilsTemplates.displayArray(input,LeetCodeProblems::maxProfit,"Max Profits");
     }
 
     public static void interpretRoman()
     {
         String input = "IV";
-        int result = LeetCodeProblems.romanToInt(input);
-        System.out.println(result);
+        UtilsTemplates.displayWithName(input,LeetCodeProblems::romanToInt,"ROMAN Converstion");
     }
 
     public static void displayPriorityQueues()
@@ -97,8 +94,7 @@ public class Main {
     public static void largestIncreasingSubsequence()
     {
         int[] nums = {10,9,2,5,3,7,101,18};
-        int result = LeetCodeProblems.largestIncreasingSubSequence(nums);
-        System.out.println("The result is: "+result);
+        UtilsTemplates.displayArray(nums,LeetCodeProblems::largestIncreasingSubSequence,"Largest Growing Subsequence");
     }
 
     public static void minimumAbsDifference()

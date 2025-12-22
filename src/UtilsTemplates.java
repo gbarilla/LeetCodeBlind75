@@ -1,41 +1,34 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class UtilsTemplates {
 
-    public static void arrayInputProblemsReturnValue()
+    public static <T,R> void display(T input, Function<T,R> algorithm)
     {
-        int[] nums = {10,9,2,5,3,7,101,18};
-        int result = LeetCodeProblems.largestIncreasingSubSequence(nums);
-        System.out.println("The result is: "+result);
+        R result = algorithm.apply(input);
+        System.out.println("The string: "+input+" is "+result);
     }
 
-    public static void arrayInputReturnsList()
+    public static <T,R> void displayWithName(T input, Function<T,R> algorithm,String name)
     {
-        int[] arr = {1,3,6,10,15};
-        List<List<Integer>> result = LeetCodeProblems.minimumAbsDifference(arr);
-        Consumer<List<List<Integer>>> test = (n) -> System.out.println(n.toString());
-        test.accept(result);
+        R result = algorithm.apply(input);
+        System.out.println("Currently Running: "+name);
+        System.out.println("The string: "+input+" is "+result);
     }
 
-    public static int arrayInputreturnsInt(int[] input)
+    public static <R> void displayArray(int[] input,Function<int[],R> algorithm,String name)
     {
-        int result = 0;
-        return 0;
-    }
-
-    public static List<String> intInputArrayOutput(int input)
-    {
-        List<String> result = new ArrayList<>();
-        return result;
-    }
-
-    public static void inputStringDisplaySingleOutput()
-    {
-        String input = "aabcdefghij";
-        String result = LeetCodeProblems.stringCompresssion(input);
-        System.out.println(result);
+        StringBuilder inputString = new StringBuilder();
+        for(int i : input)
+        {
+            inputString.append(i);
+            inputString.append(",");
+        }
+        R result = algorithm.apply(input);
+        System.out.println("Currently Running: "+name);
+        System.out.println("The string: "+inputString.toString()+" is "+result);
     }
 
 }
