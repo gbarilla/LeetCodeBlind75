@@ -29,7 +29,76 @@ public class Main {
         //lastStoneWeight();
         //minimumAbsDifference();
         //importantClassesToKnow();
-        longestSubstringWithoutRepeating();
+        //longestSubstringWithoutRepeating();
+        //largestIncreasingSubsequence();
+        //interpretRoman();
+        //BuySellEffieciently();
+        mustCompleteCopy();
+    }
+
+    public static void mustCompleteCopy()
+    {
+        String input = "()";
+        Boolean result = LeetCodeProblems.isValid(input);
+        System.out.println("The string: "+input+" is "+result);
+    }
+
+    public static void BuySellEffieciently()
+    {
+        int[] input = {7,1,5,3,6,4};
+        int result = LeetCodeProblems.maxProfit(input);
+        System.out.println(result);
+    }
+
+    public static void interpretRoman()
+    {
+        String input = "IV";
+        int result = LeetCodeProblems.romanToInt(input);
+        System.out.println(result);
+    }
+
+    public static void displayPriorityQueues()
+    {
+        PriorityQueue<Integer> test= new PriorityQueue<Integer>();
+        test.offer(10);
+        test.offer(5);
+        test.offer(25);
+        test.offer(15);
+
+        System.out.println(test.peek());
+        var test2 = test.poll();
+        System.out.println(test2);
+        System.out.println(test.peek());
+
+        System.out.println("NEWWW HERER REVERSE ORDER");
+
+        PriorityQueue<Integer> test3 = new PriorityQueue<>(Collections.reverseOrder());
+        test3.offer(10);
+        test3.offer(5);
+        test3.offer(25);
+        test3.offer(15);
+
+        System.out.println(test3.peek());
+        var test4 = test3.poll();
+        System.out.println(test4);
+        System.out.println(test3.peek());
+
+        Consumer<Integer> lambaTest = (a) -> {
+            String fun = a+"HELLO WORLD";
+            System.out.println(fun);
+        };
+
+
+        PriorityQueue<Integer> custom = new PriorityQueue<Integer>(
+                (a,b)-> a-b
+        );
+    }
+
+    public static void largestIncreasingSubsequence()
+    {
+        int[] nums = {10,9,2,5,3,7,101,18};
+        int result = LeetCodeProblems.largestIncreasingSubSequence(nums);
+        System.out.println("The result is: "+result);
     }
 
     public static void minimumAbsDifference()
