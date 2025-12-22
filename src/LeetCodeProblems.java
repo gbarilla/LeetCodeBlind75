@@ -988,5 +988,134 @@ public class LeetCodeProblems {
         return result;
     }
 
+    public static int largestIncreasingSubSequence(int[] input)
+    {
+        int result = 0;
+
+        int indexOfStartingCandidate = 0;
+        for(int i = 0; i < input.length-2; i ++)
+        {
+            if(input[i]<input[i+1])
+            {
+                indexOfStartingCandidate = i;
+            }
+        }
+
+
+        return 0;
+    }
+
+    public static int romanToInt(String s) {
+        int result = 0;
+        HashMap<Character, Integer> roman = new HashMap<Character, Integer>();
+        roman.put('I',1);
+        roman.put('V',5);
+        roman.put('X',10);
+        roman.put('L',50);
+        roman.put('C',100);
+        roman.put('D',500);
+        roman.put('M',1000);
+
+        for(int i =0; i < s.length();i++)
+        {
+            char currentCharValue = s.charAt(i);
+            if(roman.containsKey(currentCharValue))
+            {
+                int currentValue = roman.get(currentCharValue);
+
+                if(i+1<s.length())
+                {
+                    char possibleSecondValue = s.charAt(i+1);
+                    if(roman.containsKey(possibleSecondValue))
+                    {
+                        int possibleValue = roman.get(possibleSecondValue);
+                        if(possibleValue>currentValue)
+                        {
+                            result-=currentValue;
+                        }
+                        else {
+                            result+=currentValue;
+                        }
+                    }
+                }
+                else {
+                    result += currentValue;
+                }
+
+            }
+        }
+        return result;
+    }
+
+    public static int maxProfit(int[] prices) {
+        int result = 0;
+        if(prices.length==0)
+        {
+            return 0;
+        }
+        else
+        {
+           PriorityQueue<Integer> order = new PriorityQueue<>();
+           for(int i =0; i < prices.length;i++)
+           {
+               if(i==1)
+               {
+                   int minDifference = prices[i]-order.peek();
+                   if(minDifference<0)
+                   {
+                       minDifference=0;
+                   }
+                   result=minDifference;
+               }
+               else if(i>1) {
+                   int minDifference = prices[i]-order.peek();
+                   if(minDifference>result)
+                   {
+                       result=minDifference;
+                   }
+
+               }
+               order.offer(prices[i]);
+           }
+        }
+        return result;
+    }
+
+    public static boolean isValid(String s)
+    {
+        if(s.length()<2)
+        {
+            return false;
+        }
+        Stack<Character> possible = new Stack<>();
+        HashMap<Character,Character> openClosed= new HashMap<>();
+        openClosed.put('(',')');
+        openClosed.put('{','}');
+        openClosed.put('[',']');
+
+        for(int i =0;i<s.length();i++)
+        {
+            Character current = s.charAt(i);
+            if(openClosed.containsKey(current))
+            {
+                possible.add(openClosed.get(current));
+            }
+            else if(!possible.isEmpty() && possible.peek()==current)
+            {
+                possible.pop();
+            }
+            else {
+                return false;
+            }
+        }
+        if(possible.isEmpty())
+        {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
 
 }
