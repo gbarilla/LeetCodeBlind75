@@ -34,7 +34,65 @@ public class Main {
         //interpretRoman();
         //BuySellEffieciently();
         //mustCompleteCopy();
+        //understandTrees();
+        implementBinarySearch();
     }
+
+    public static void implementBinarySearch()
+    {
+        int[] nums = {-1,0,3,5,9,12};
+        int target = 9;
+
+        int inputLenght = nums.length;
+        int trueLenght = inputLenght-1;
+
+        int start = 0;
+        int end = trueLenght;
+
+        while(start<=end)
+        {
+            int displacement = start+end;
+            int mid = displacement/2;
+            int midValue = nums[mid];
+
+            if(target == midValue)
+            {
+                System.out.println("VALUE FOUND");
+            }
+
+            if(target < midValue)
+            {
+                end = mid-1;
+            }
+            else {
+                start = mid+1;
+            }
+        }
+        System.out.println("Value Not Found");
+    }
+
+    public static void understandTrees()
+    {
+        System.out.println("We are here to understand trees");
+        System.out.println("Determine interface behavior all trees have nodes:");
+        System.out.println("They can have pointers or not on leafs");
+        System.out.println("Interface has behavior to see element and left and right pointer");
+
+    }
+
+    public static void decodeString()
+    {
+        String input = "3[a]2[bc]";
+        ArrayList<Character> whatToRepeate = new ArrayList<>();
+        for(int i =0;i<input.length();i++)
+        {
+            Character current = input.charAt(i);
+            //if(Integer.getInteger(current))
+
+        }
+    }
+
+
 
     public static void mustCompleteCopy()
     {
