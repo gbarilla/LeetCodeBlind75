@@ -35,7 +35,22 @@ public class Main {
         //BuySellEffieciently();
         //mustCompleteCopy();
         //understandTrees();
-        implementBinarySearch();
+        //implementBinarySearch();
+        buySellMaxProfit();
+    }
+
+    public static void uniqueTracker()
+    {
+        int[] input = {1,1,2,2,3};
+        UtilsTemplates.displayArray(input,LeetCodeProblems::removeDuplicates,"UniqueCount");
+    }
+
+    public static void buySellMaxProfit()
+    {
+        int[] input = {6,1,3,2,4,7};
+        UtilsTemplates.displayArray(input,LeetCodeProblems::maxProfits2,"MaxProfit");
+        //int output = LeetCodeProblems.maxProfits2(input);
+
     }
 
     public static void implementBinarySearch()

@@ -1117,5 +1117,86 @@ public class LeetCodeProblems {
         }
     }
 
+    public static int removeDuplicates(int[] nums) {
+        if(nums.length==0)
+        {
+            return 0;
+        }
+
+        int currentInsertIndex = 0;
+        int prior = nums[currentInsertIndex];
+
+
+        for(int i = 0; i < nums.length; i ++)
+        {
+            if(prior != nums[i])
+            {
+                currentInsertIndex++;
+                nums[currentInsertIndex] = nums[i];
+            }
+            prior = nums[i];
+        }
+        return currentInsertIndex+1;
+    }
+
+    public static int maxProfits2(int[] input)
+    {
+        //[7,1,5,3,6,4]
+
+        String increasing = "Increasing";
+        String decreasing = "decreasing";
+        String same = "same";
+
+        int localMin = 0;
+        int localMax = 0;
+        int absoluteMin = input[0];
+        int absoluteMax = 0;
+
+        int prior = input[0];
+        int result = 0;
+
+        for(int i =0; i < input.length;i++)
+        {
+            int currentValue = input[i];
+            if(currentValue == prior)
+            {
+                System.out.println(same);
+            }
+            if(currentValue < prior)
+            {
+                if(localMax != 0 && localMax !=0)
+                {
+                    int currentProfit = localMax - localMin;
+                    result+=currentProfit;
+                    absoluteMin = Math.min(currentValue,localMin);
+                    localMin = 0;
+                    localMax = 0;
+                }
+                System.out.println(decreasing);
+                localMin = currentValue;
+            }
+            if(currentValue > prior)
+            {
+                System.out.println(increasing);
+                localMax = currentValue;
+                absoluteMax = Math.max(currentValue,localMax);
+                if(i == input.length-1)
+                {
+                    int currentProfit = localMax - localMin;
+                    result+=currentProfit;
+                }
+            }
+            prior = input[i];
+        }
+
+        if(absoluteMax-absoluteMin > result)
+        {
+            return absoluteMax-absoluteMin;
+        }
+
+        return result;
+
+    }
+
 
 }
