@@ -37,8 +37,15 @@ public class Main {
         //understandTrees();
         //implementBinarySearch();
         //buySellMaxProfit();
-        houseRobberDP();
+        //houseRobberDP();
+        minCostClimbingStairs();
 
+    }
+
+    public static void minCostClimbingStairs()
+    {
+        int[] cost = {10,15,20};
+        System.out.println(LeetCodeProblems.minCostClimbingStairs(cost));
     }
 
     public static void houseRobberDP()

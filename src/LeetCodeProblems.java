@@ -1229,6 +1229,33 @@ public class LeetCodeProblems {
 
     }
 
+    public static int minCostClimbingStairs(int[] cost)
+    {
+        if(cost == null || cost.length == 0)
+        {
+            return 0;
+        }
+
+        int numberOfSteps = cost.length;
+        int[] minimumAtStep = new int [numberOfSteps];
+
+        if(numberOfSteps==1)
+        {
+            return minimumAtStep[0];
+        }
+
+        minimumAtStep[0] = cost[0];
+        minimumAtStep[1] = cost[1];
+
+        for(int i =2;i<numberOfSteps;i++)
+        {
+            minimumAtStep[i] = cost[i]+Math.min(minimumAtStep[i-1],minimumAtStep[i-2]);
+        }
+
+        return Math.min(minimumAtStep[numberOfSteps-1],minimumAtStep[numberOfSteps-2]);
 
 
+
+
+    }
 }
