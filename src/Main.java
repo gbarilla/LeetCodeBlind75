@@ -36,7 +36,15 @@ public class Main {
         //mustCompleteCopy();
         //understandTrees();
         //implementBinarySearch();
-        buySellMaxProfit();
+        //buySellMaxProfit();
+        houseRobberDP();
+
+    }
+
+    public static void houseRobberDP()
+    {
+        int[] nums = {2,7,9,3,1};
+        System.out.println(LeetCodeProblems.rob(nums));
     }
 
     public static void uniqueTracker()

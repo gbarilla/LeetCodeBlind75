@@ -1198,5 +1198,37 @@ public class LeetCodeProblems {
 
     }
 
+    public static int rob(int[] nums)
+    {
+        if(nums == null||nums.length==0)
+        {
+            return 0;
+        }
+
+        int numberOfHouses = nums.length;//[1,2,3] = 3 with index 0-2
+
+        int[] maxProfitsAtHouse = new int[numberOfHouses];
+
+        maxProfitsAtHouse[0]= nums[0];//Set Default
+
+        if(numberOfHouses==1)
+        {
+            return maxProfitsAtHouse[0];
+        }
+
+        maxProfitsAtHouse[1] = Math.max(nums[0],nums[1]);
+
+        for(int currentHouseIndex = 2; currentHouseIndex < numberOfHouses;currentHouseIndex++)
+        {
+            int prerviousHouseIndex = currentHouseIndex-1;
+            int lastRobbedIndex = currentHouseIndex-2;
+            maxProfitsAtHouse[currentHouseIndex] = Math.max(maxProfitsAtHouse[prerviousHouseIndex],maxProfitsAtHouse[lastRobbedIndex]+nums[currentHouseIndex]);
+        }
+
+        return maxProfitsAtHouse[numberOfHouses-1];
+
+    }
+
+
 
 }
